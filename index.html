@@ -1,1 +1,252 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Solo Tournament Dashboard</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --bg-dark: #0f111a;
+            --card-bg: #1f2430;
+            --text-light: #ffffff;
+            --accent: #ffa502;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .header h1 { margin: 0; font-size: 28px; text-transform: uppercase; }
+        .header p { margin: 5px 0 0; opacity: 0.9; }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: var(--card-bg);
+            border: 1px solid #2f3542;
+            color: var(--text-light);
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Info Cards */
+        .grid-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-card {
+            background: #2a3142;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        .info-card h4 { margin: 0 0 5px; color: var(--accent); }
+        .info-card p { margin: 0; font-size: 18px; font-weight: bold; }
+
+        /* Form Styling */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #2f3542;
+            background: #0f111a;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        .btn-wa {
+            width: 100%;
+            padding: 12px;
+            background: #25D366;
+            color: white;
+            border: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-wa:hover { background: #1eb857; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>🏆 Free Fire Solo Showdown</h1>
+        <p>Solo Match Registration & Dashboard</p>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('details')">📋 Info & Prize</button>
+        <button class="tab-btn" onclick="openTab('rules')">📜 Rules</button>
+        <button class="tab-btn" onclick="openTab('register')">🎮 Register</button>
+    </div>
+
+    <!-- Tab 1: Match Details & Prize Pool -->
+    <div id="details" class="tab-content active">
+        <h2>Match Information</h2>
+        <div class="grid-info">
+            <div class="info-card">
+                <h4>🗓️ Date & Time</h4>
+                <p>TBA (Coming Soon)</p>
+            </div>
+            <div class="info-card">
+                <h4>💰 Entry Fee</h4>
+                <p>₹600 (Online / Offline)</p>
+            </div>
+            <div class="info-card">
+                <h4>🗺️ Map</h4>
+                <p>Bermuda / Solo</p>
+            </div>
+        </div>
+
+        <h2>🏆 Prize Pool Breakdown</h2>
+        <div class="grid-info">
+            <div class="info-card" style="border-color: #ffd700;">
+                <h4>🥇 1st Place</h4>
+                <p>₹5,000</p>
+            </div>
+            <div class="info-card" style="border-color: #c0c0c0;">
+                <h4>🥈 2nd Place</h4>
+                <p>₹3,000</p>
+            </div>
+            <div class="info-card" style="border-color: #cd7f32;">
+                <h4>🥉 3rd Place</h4>
+                <p>₹2,000</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Tournament Rules -->
+    <div id="rules" class="tab-content">
+        <h2>Match Rules & Regulations</h2>
+        <ul>
+            <li>Solo Players Only (Teaming up is strictly prohibited).</li>
+            <li>Hacks, Emulators, or Third-Party Apps = Instant DQ.</li>
+            <li>Players must join the custom room 10 minutes before match time.</li>
+            <li>Room ID & Password will be sent via WhatsApp.</li>
+        </ul>
+    </div>
+
+    <!-- Tab 3: Registration Form -->
+    <div id="register" class="tab-content">
+        <h2>Solo Player Registration</h2>
+        <div class="form-group">
+            <label>Player Name (IGN)</label>
+            <input type="text" id="playerName" class="form-control" placeholder="Enter Game Name">
+        </div>
+        <div class="form-group">
+            <label>Free Fire UID</label>
+            <input type="number" id="playerUID" class="form-control" placeholder="10 Digit UID">
+        </div>
+        <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="playerPhone" class="form-control" placeholder="10 Digit Mobile Number">
+        </div>
+        <div class="form-group">
+            <label>Entry Type</label>
+            <select id="entryType" class="form-control">
+                <option value="Online Entry (₹600)">Online Entry (₹600)</option>
+                <option value="Offline Entry (₹600)">Offline Entry (₹600)</option>
+            </select>
+        </div>
+        <button type="button" onclick="sendToWhatsApp()" class="btn-wa">💬 REGISTER & SEND ON WHATSAPP</button>
+    </div>
+</div>
+
+<script>
+function openTab(tabName) {
+    var contents = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < contents.length; i++) {
+        contents[i].classList.remove("active");
+    }
+    var buttons = document.getElementsByClassName("tab-btn");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("active");
+    }
+    document.getElementById(tabName).classList.add("active");
+    event.currentTarget.classList.add("active");
+}
+
+function sendToWhatsApp() {
+    var name = document.getElementById('playerName').value;
+    var uid = document.getElementById('playerUID').value;
+    var phone = document.getElementById('playerPhone').value;
+    var entry = document.getElementById('entryType').value;
+
+    if(name === "" || uid === "" || phone === "") {
+        alert("Kripya saari details dhang se bharein!");
+        return;
+    }
+
+    var message = "🎮 *SOLO MATCH REGISTRATION* 🎮%0A%0A" +
+                  "👤 *Player Name:* " + encodeURIComponent(name) + "%0A" +
+                  "🆔 *Free Fire UID:* " + encodeURIComponent(uid) + "%0A" +
+                  "📞 *WhatsApp:* " + encodeURIComponent(phone) + "%0A" +
+                  "🎟️ *Entry Type:* " + encodeURIComponent(entry);
+
+    var whatsappNumber = "917266030538";
+
+    var url = "https://wa.me/" + whatsappNumber + "?text=" + message;
+    window.open(url, '_blank');
+}
+</script>
+
+</body>
+  </html>
 
